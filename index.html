@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDDK AI | Global Network</title>
+    <style>
+        :root { --main-blue: #00d2ff; --bg: #050810; --card: #111827; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; }
+        
+        /* असली ऐप जैसा हेडर */
+        header { padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; position: sticky; top: 0; background: var(--bg); z-index: 100; }
+        .logo { font-size: 20px; font-weight: bold; color: var(--main-blue); }
+        
+        /* अर्निंग मीटर */
+        .earning-card { background: linear-gradient(135deg, #1e293b, #0f172a); margin: 15px; padding: 20px; border-radius: 15px; border: 1px solid var(--main-blue); }
+        .money { font-size: 28px; font-weight: bold; color: #22c55e; }
+
+        /* वीडियो फीड (यूट्यूब स्टाइल) */
+        .feed { padding: 10px; margin-bottom: 70px; }
+        .v-card { background: var(--card); border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+        .v-thumb { width: 100%; aspect-ratio: 16/9; background: #1f2937; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+        .v-info { padding: 12px; }
+
+        /* सुरक्षा (OTP) ओवरले */
+        #login-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 1000; display: flex; align-items: center; justify-content: center; }
+        .login-box { width: 85%; text-align: center; padding: 30px; background: var(--card); border-radius: 20px; }
+        input { width: 90%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: white; }
+        .btn { background: var(--main-blue); color: black; padding: 12px 30px; border-radius: 8px; font-weight: bold; border: none; width: 100%; }
+    </style>
+</head>
+<body>
+
+    <div id="login-overlay">
+        <div class="login-box">
+            <h2>RDDK AI 🌐</h2>
+            <p style="color:#94a3b8">इंटरनेशनल सुरक्षा: नंबर वेरीफाई करें</p>
+            <input type="tel" id="pNumber" placeholder="मोबाइल नंबर डालें">
+            <button class="btn" onclick="sendOTP()">OTP भेजें</button>
+            <div id="otp-section" style="display:none; margin-top:20px;">
+                <input type="text" id="otpCode" placeholder="6 अंकों का OTP डालें">
+                <button class="btn" onclick="verifyLogin()">लॉगिन करें</button>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="logo">RDDK AI</div>
+        <div style="font-size: 12px; border: 1px solid var(--main-blue); padding: 4px 8px; border-radius: 4px;">GLOBAL</div>
+    </header>
+
+    <div class="earning-card">
+        <div style="font-size: 12px; color: #94a3b8;">कुल इंटरनेट ट्रैफिक कमाई</div>
+        <div class="money">₹ <span id="balance">0.00</span></div>
+        <div style="font-size: 10px; margin-top: 5px; color: var(--main-blue);">● लाइव सर्वर चालू है</div>
+    </div>
+
+    <div class="feed">
+        <h4 style="margin-left: 5px;">🔥 ट्रेंडिंग (छोटे क्रिएटर्स)</h4>
+        <div class="v-card">
+            <div class="v-thumb">🎬</div>
+            <div class="v-info">
+                <strong>गाँव का पहला AI सेंटर</strong>
+                <p style="font-size: 12px; color: #94a3b8;">Deepak Rajput • 2M Views</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function sendOTP() {
+            const num = document.getElementById('pNumber').value;
+            if(num.length >= 10) {
+                alert("नंबर " + num + " पर OTP भेजा गया।");
+                document.getElementById('otp-section').style.display = 'block';
+            }
+        }
+
+        function verifyLogin() {
+            document.getElementById('login-overlay').style.display = 'none';
+            startRevenue();
+        }
+
+        function startRevenue() {
+            let rev = 0;
+            setInterval(() => {
+                rev += 0.05;
+                document.getElementById('balance').innerText = rev.toFixed(2);
+            }, 2000);
+        }
+    </script>
+</body>
+  </html>
+  
